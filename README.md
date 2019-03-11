@@ -5,7 +5,7 @@
 ## 简单使用
 
 ```js
-import dva from 'react-native-dva'
+import dva from 'rn-dva'
 import dvaLoading from 'dva-loading'
 import { 
   createReactNavigationReduxMiddleware
