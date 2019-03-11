@@ -54,23 +54,18 @@ import { AsyncStorage } from 'react-native'
 const createPersistStore = (rootReducer, createStore)=>{
   const persistConfig = {
     key: 'root',
-    storage,
+    storage: AsyncStorage
   }
   const persistedReducer = persistReducer(persistConfig, rootReducer)
   return createStore(persistedReducer);
 }
 
-const StoreEnhancer  = (createStore)=>{
-    return (rootReducer, prevState)=>{
-       return createPersistStore(rootReducer, createStore);
-    }
-}
+const StoreEnhancer  = () => (createStore)=> (rootReducer, prevState)=> createPersistStore(rootReducer, createStore);
+
 //....
 const app = dva({
   extraEnhancers: [
-    applyMiddleware(middleware)
-  ],
-  extraEnhancers: [
+    StoreEnhancer(),
     applyMiddleware(middleware)
   ],
   //...
