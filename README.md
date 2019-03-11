@@ -90,5 +90,4 @@ persistStore(app.getStore() , { storage : AsyncStorage }, (err, res)=>{
       })
     }
 });
-persistStore(store)
 ```
